@@ -1,0 +1,50 @@
+{
+  "xgboost": {
+    "best_params": {
+      "n_estimators": 323,
+      "max_depth": 4,
+      "learning_rate": 0.03693242104446499,
+      "subsample": 0.8916493573388731,
+      "colsample_bytree": 0.9697111439005887,
+      "min_child_weight": 2,
+      "gamma": 0.7932566552054042,
+      "reg_alpha": 0.04038769360104359,
+      "reg_lambda": 0.3309318803074617
+    },
+    "cv_accuracy": 0.5,
+    "test_accuracy": 0.6153846153846154,
+    "test_auc": 0.4722222222222222
+  },
+  "lightgbm": {
+    "best_params": {
+      "n_estimators": 859,
+      "max_depth": 7,
+      "learning_rate": 0.24221329543758066,
+      "subsample": 0.9034780659468226,
+      "colsample_bytree": 0.6146494750169152,
+      "min_child_samples": 66,
+      "reg_alpha": 0.4252701449586799,
+      "reg_lambda": 0.32853411697834234,
+      "num_leaves": 80
+    },
+    "cv_accuracy": 0.48,
+    "test_accuracy": 0.6923076923076923,
+    "test_auc": 0.5
+  },
+  "randomforest": {
+    "best_params": {
+      "n_estimators": 488,
+      "max_depth": 11,
+      "min_samples_split": 8,
+      "min_samples_leaf": 9,
+      "max_features": null
+    },
+    "cv_accuracy": 0.48,
+    "test_accuracy": 0.6923076923076923,
+    "test_auc": 0.4444444444444444
+  },
+  "ensemble": {
+    "test_accuracy": 0.5384615384615384,
+    "test_auc": 0.4722222222222222
+  }
+}

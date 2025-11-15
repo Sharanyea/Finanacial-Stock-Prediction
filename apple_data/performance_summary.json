@@ -1,0 +1,36 @@
+{
+  "models": {
+    "XGBoost": {
+      "accuracy": 0.5384615384615384,
+      "auc": 0.4722222222222222
+    },
+    "LightGBM": {
+      "accuracy": 0.5384615384615384,
+      "auc": 0.3611111111111111
+    },
+    "RandomForest": {
+      "accuracy": 0.3076923076923077,
+      "auc": 0.4583333333333333
+    },
+    "Ensemble": {
+      "accuracy": 0.46153846153846156,
+      "auc": 0.5
+    }
+  },
+  "best_model": "XGBoost",
+  "training_samples": 48,
+  "test_samples": 13,
+  "total_features": 67,
+  "top_10_features": [
+    "VWAP",
+    "day_sin",
+    "price_to_book",
+    "Low",
+    "pe_ratio",
+    "High",
+    "day_of_week",
+    "is_month_start",
+    "week_of_year",
+    "Transactions"
+  ]
+}

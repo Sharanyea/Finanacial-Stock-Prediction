@@ -1,0 +1,23 @@
+2025-11-10 19:05:01,665 [INFO] Starting rolling_rebalance_engine: n_steps=2000, tickers=['AAPL', 'MSFT', 'NVDA', 'GOOG']
+2025-11-10 19:05:01,672 [DEBUG] step 0: insufficient history, using equal weights
+2025-11-10 19:05:01,680 [DEBUG] step 100: insufficient history, using equal weights
+2025-11-10 19:05:01,770 [DEBUG] step 200: rebalanced; realized_vol=0.094 target=0.200 scale=1.500
+2025-11-10 19:05:01,786 [DEBUG] step 300: rebalanced; realized_vol=0.099 target=0.200 scale=1.500
+2025-11-10 19:05:01,806 [DEBUG] step 400: rebalanced; realized_vol=0.115 target=0.200 scale=1.500
+2025-11-10 19:05:01,825 [DEBUG] step 500: rebalanced; realized_vol=0.099 target=0.200 scale=1.500
+2025-11-10 19:05:01,840 [DEBUG] step 600: rebalanced; realized_vol=0.098 target=0.200 scale=1.500
+2025-11-10 19:05:01,855 [DEBUG] step 700: rebalanced; realized_vol=0.101 target=0.200 scale=1.500
+2025-11-10 19:05:01,871 [DEBUG] step 800: rebalanced; realized_vol=0.101 target=0.200 scale=1.500
+2025-11-10 19:05:01,890 [DEBUG] step 900: rebalanced; realized_vol=0.100 target=0.200 scale=1.500
+2025-11-10 19:05:01,909 [DEBUG] step 1000: rebalanced; realized_vol=0.103 target=0.200 scale=1.500
+2025-11-10 19:05:01,931 [DEBUG] step 1100: rebalanced; realized_vol=0.106 target=0.200 scale=1.500
+2025-11-10 19:05:01,946 [DEBUG] step 1200: rebalanced; realized_vol=0.109 target=0.200 scale=1.500
+2025-11-10 19:05:01,968 [DEBUG] step 1300: rebalanced; realized_vol=0.104 target=0.200 scale=1.500
+2025-11-10 19:05:01,986 [DEBUG] step 1400: rebalanced; realized_vol=0.103 target=0.200 scale=1.500
+2025-11-10 19:05:01,998 [DEBUG] step 1500: rebalanced; realized_vol=0.093 target=0.200 scale=1.500
+2025-11-10 19:05:02,019 [DEBUG] step 1600: rebalanced; realized_vol=0.113 target=0.200 scale=1.500
+2025-11-10 19:05:02,038 [DEBUG] step 1700: rebalanced; realized_vol=0.111 target=0.200 scale=1.500
+2025-11-10 19:05:02,054 [DEBUG] step 1800: rebalanced; realized_vol=0.102 target=0.200 scale=1.500
+2025-11-10 19:05:02,067 [DEBUG] step 1900: rebalanced; realized_vol=0.098 target=0.200 scale=1.500
+2025-11-10 19:05:02,088 [INFO] rolling_rebalance_engine finished. metrics: {"CAGR": 0.11178008020157049, "Sharpe": 1.0564645059433728, "Sortino": 1.8573418081770845, "MaxDD": -0.1279569599743607, "Calmar": 0.8735756097237128, "VaR95": -0.009966385688765381, "CVaR95": -0.01293288034810871, "Mean": 0.00043868889558054376, "Std": 0.006591768325531395, "WinRate": 0.524, "Trades": 2000}
+2025-11-10 19:05:02,095 [INFO] Demo metrics: {'CAGR': np.float64(0.11178008020157049), 'Sharpe': np.float64(1.0564645059433728), 'Sortino': np.float64(1.8573418081770845), 'MaxDD': np.float64(-0.1279569599743607), 'Calmar': np.float64(0.8735756097237128), 'VaR95': np.float64(-0.009966385688765381), 'CVaR95': np.float64(-0.01293288034810871), 'Mean': np.float64(0.00043868889558054376), 'Std': np.float64(0.006591768325531395), 'WinRate': np.float64(0.524), 'Trades': 2000}
