@@ -1,9 +1,8 @@
-````markdown name=README.md url=https://github.com/Sharanyea/Finanacial-Stock-Prediction/blob/main/README.md
 # Finanacial-Stock-Prediction
 
-A compact research / demo repository for stock return modeling and a dynamic portfolio optimization dashboard. The project contains a Jupyter notebook (analysis & experiments) and a Streamlit-based interactive dashboard that demonstrates a rolling rebalancing portfolio strategy with volatility targeting and simple optimization objectives.
+A compact research/demo repository showcasing stock return modeling and a dynamic portfolio optimization dashboard. The project includes a Jupyter notebook for analysis and a Streamlit dashboard that simulates rolling rebalancing strategies with volatility targeting and simple optimization objectives.
 
-> NOTE: The repository is predominantly Jupyter Notebook content. The dashboard script is implemented in `portfolio_dashboard.py`.
+> NOTE: The repository is mostly Jupyter Notebook content. The interactive dashboard script is implemented in `portfolio_dashboard.py`.
 
 ---
 
@@ -11,8 +10,8 @@ A compact research / demo repository for stock return modeling and a dynamic por
 
 - `stock_pred.ipynb` — Main Jupyter notebook with data exploration, modeling experiments, and visualizations.
 - `portfolio_dashboard.py` — Streamlit app to interactively simulate rolling rebalancing strategies across user-selected tickers and parameters.
-- `apple_data/` — (data folder; local CSVs or downloads can be placed here)
-- `logs/` — (runtime logs)
+- `apple_data/` — Optional data folder (place CSVs here for offline use).
+- `logs/` — Runtime logs.
 - `README.md` — This file.
 
 ---
@@ -23,121 +22,92 @@ A compact research / demo repository for stock return modeling and a dynamic por
   - Rebalance frequency and lookback window
   - Optimization objective: `sharpe`, `drawdown`, or `hybrid`
   - Volatility targeting (scale factor to target portfolio volatility)
-  - Allow control of trading days per year and start/end dates
-- Live interactive visualizations:
-  - Equity curve, drawdown, weight allocation over time
-  - Volatility targeting dynamics and realized vs. target vol
+  - Trading days per year and custom date range
+- Interactive visualizations:
+  - Equity curve, drawdown, and weight allocation over time
+  - Volatility targeting dynamics and scale factor
   - Asset correlation heatmap
   - Performance metrics (Sharpe, CAGR, Max Drawdown)
-- Uses Yahoo Finance as data source (via `yfinance`) for historical adjusted close prices.
+- Uses Yahoo Finance (`yfinance`) for historical adjusted close prices.
 
 ---
 
 ## Quick start
 
 1. Clone the repository
+   ```bash
    git clone https://github.com/Sharanyea/Finanacial-Stock-Prediction.git
    cd Finanacial-Stock-Prediction
+   ```
 
-2. Create and activate a Python virtual environment (recommended)
-   - python -m venv venv
-   - On macOS/Linux: source venv/bin/activate
-   - On Windows (PowerShell): .\venv\Scripts\Activate.ps1
+2. Create and activate a virtual environment (recommended)
+   ```bash
+   python -m venv venv
+   # macOS/Linux
+   source venv/bin/activate
+   # Windows (PowerShell)
+   .\venv\Scripts\Activate.ps1
+   ```
 
-3. Install minimal dependencies
+3. Install dependencies
+   ```bash
    pip install streamlit pandas numpy matplotlib seaborn yfinance jupyterlab
+   ```
 
-   Optional (for notebook): jupyterlab or notebook
-
-4. Run the interactive dashboard
+4. Run the Streamlit dashboard
+   ```bash
    streamlit run portfolio_dashboard.py
-
-   The Streamlit UI will open in your browser (usually at http://localhost:8501). Use the sidebar to specify tickers, date range, rebalancing frequency, lookback, objective, and target volatility, then click "Run Simulation".
+   ```
 
 5. Open the notebook
+   ```bash
    jupyter lab
-   or
-   jupyter notebook
-
-   Then open `stock_pred.ipynb` to explore the step-by-step analysis.
+   # then open stock_pred.ipynb
+   ```
 
 ---
 
-## About the rolling rebalancing strategy (short summary)
+## Strategy summary
 
-The dashboard implements a rolling rebalancing procedure that:
+The dashboard implements a rolling rebalancing routine that:
 
 - Computes historical returns from adjusted close prices.
-- On each rebalance step (every `rebalance_freq` steps), estimates an optimizer weight vector using:
-  - inverse covariance × mean returns for a Sharpe-objective style allocation,
-  - an inverse-volatility heuristic for drawdown minimization,
-  - or a hybrid blend of both.
-- Applies a non-negative constraint to weights and normalizes to sum to 1.
-- Targets a user-specified annualized volatility by scaling weights (clipped to a sensible range).
-- Advances through the historical returns applying the current weights for the next rebalance interval.
-- Returns metrics and time series including equity curve, realized drawdowns, weights history, and a volatility history.
+- On each rebalance step, estimates weights using either an inverse-covariance mean-return solution (Sharpe-style), an inverse-volatility heuristic (drawdown-focused), or a hybrid blend.
+- Applies non-negative weights and normalizes them to sum to 1.
+- Scales weights to meet a user-specified annualized volatility target (clipped to avoid extreme leverage).
+- Advances through returns applying the most recent weights for the next rebalance interval.
 
-Main outputs:
-- `equity_series` — portfolio account value over time
-- `port_returns` — per-step returns used to build the equity curve
-- `weights_df` — recorded allocation vectors at each rebalance step
-- `metrics` — Sharpe, CAGR, cumulative return, max drawdown
-- `vol_history` — recorded realized vol, target vol, and scale factor by rebalance step
+Outputs include `equity_series`, `port_returns`, `weights_df`, `metrics` (Sharpe, CAGR, CumReturn, MaxDD), and `vol_history`.
 
 ---
 
-## Parameters exposed in the UI
+## UI parameters
 
-- Stock Tickers — comma-separated list (e.g., `AAPL, MSFT, NVDA`)
-- Start / End Date — fetch window for historical prices
+- Stock Tickers — comma-separated list (e.g., `AAPL,MSFT,NVDA`)
+- Start / End Date — historical price window
 - Rebalance Frequency — number of observations between rebalances
-- Lookback Window — minimum historical length required before doing optimization
-- Optimization Objective — `"sharpe"`, `"drawdown"`, or `"hybrid"`
-- Target Volatility (%) — annualized volatility to target via scaling
+- Lookback Window — minimum historical length before optimization
+- Optimization Objective — `sharpe`, `drawdown`, or `hybrid`
+- Target Volatility (%) — annualized volatility target
 - Trading Days per Year — used to annualize volatility and Sharpe
-
----
-
-## Interpreting results
-
-- Sharpe Ratio — risk-adjusted return measure (higher is better).
-- CAGR — compound annual growth rate (annualized portfolio growth).
-- Max Drawdown — largest peak-to-trough drop in portfolio value (more negative = worse).
-- Weight charts show how the allocation evolves over time given the selected objective and vol targeting.
-- Volatility chart shows realized volatility vs. the set target and the scale factor applied.
-
----
-
-## Data source
-
-Historical prices are fetched using `yfinance`. If you prefer to work with local CSVs instead of live downloads, place them under `apple_data/` (or modify the notebook / dashboard data loader).
 
 ---
 
 ## Suggestions / Next steps
 
-- Add a `requirements.txt` or `environment.yml` for reproducible environments.
-- Add unit tests for the rebalancing logic and metrics calculations.
-- Add a small sample dataset to `apple_data/` for offline demonstrations.
-- Add a LICENSE file and CONTRIBUTING guidelines if the project will accept external contributions.
-
----
-
-## Contributions
-
-Contributions and suggestions are welcome. For small changes you can open a PR. If you'd like help prioritizing features or expanding tests and CI, open an issue describing what you'd like to work on.
+- Add a `requirements.txt` or `environment.yml` for reproducible installs.
+- Add unit tests for the rebalancing logic and metrics.
+- Include a small sample dataset for offline demos in `apple_data/`.
+- Add a LICENSE and CONTRIBUTING if you plan to accept external contributions.
 
 ---
 
 ## License
 
-No license file is included in this repository. If you want this project to be open-source, consider adding a license (MIT, Apache-2.0, etc.). If you prefer a specific license, add it to the repository.
+No license file is included. Add a license (MIT, Apache-2.0, etc.) if you want to make this project open-source.
 
 ---
 
-## Contact / Acknowledgements
+## Contact
 
 Created by Sharanyea. Built with Python, Streamlit, yfinance, NumPy, pandas, Matplotlib, and Seaborn.
-
-If you want a tailored README tweak (shorter, longer, badge-added, or with a requirements file and sample data), tell me how you'd like it customized and I will update it.
-````
